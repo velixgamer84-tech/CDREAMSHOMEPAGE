@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CDreams — Mini CD NFC Keychain Studio</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Bootstrap CSS (Grid & Layout Support) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Link to External Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Link to External JavaScript -->
+  <script src="script.js" defer></script>
+</head>
+<body id="app-body" class="bg-neutral-950 text-white min-h-screen flex flex-col justify-between items-center transition-colors duration-500">
+
+  <!-- Smooth Dual-Layer Cross-Fade Background Container -->
+  <div id="bg-container">
+    <div id="bg-layer-1" class="bg-layer active"></div>
+    <div id="bg-layer-2" class="bg-layer"></div>
+  </div>
+
+  <!-- Professional Minimalist Navigation Bar -->
+  <header class="w-full border-b border-white/10 bg-black/20 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      
+      <!-- Left: Minimalist Sub-tagline -->
+      <div>
+        <span class="text-xs uppercase tracking-widest text-neutral-400 font-medium">
+          tiny objects / big feeling
+        </span>
+      </div>
+
+      <!-- Right: Action Navigation Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="#about-product" class="text-xs uppercase tracking-wider text-neutral-300 hover:text-white transition-colors text-decoration-none hidden sm:inline-block">About</a>
+        <a href="#sdg-advocacy" class="text-xs uppercase tracking-wider text-neutral-300 hover:text-white transition-colors text-decoration-none hidden sm:inline-block">Impact</a>
+        <a href="https://cdreamscustom.ddnsfree.com" target="_blank" rel="noopener noreferrer" class="bg-red-600 text-white font-bold px-4 py-2 rounded-full text-xs uppercase tracking-wider transition-all hover:bg-red-500 shadow-lg text-decoration-none flex items-center gap-1.5">
+          CUSTOMIZE NOW
+        </a>
+        <a href="#reviews" class="theme-bg bg-lime-400 text-black font-bold px-5 py-2 rounded-full text-xs uppercase tracking-wider transition-all hover:opacity-90 shadow-lg text-decoration-none">
+          Reviews ↗
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="top" class="w-full max-w-5xl px-4 py-10 my-auto flex flex-col items-center justify-center z-10 space-y-16">
+    
+    <!-- Section 1: Studio NFC Preview -->
+    <section id="studio" class="w-full space-y-8">
+      
+      <!-- Studio Header with Logo Above "The Mini Studio" -->
+      <div class="text-center max-w-xl mx-auto space-y-3 flex flex-col items-center">
+        
+        <!-- Large Centered CDREAMS Logo -->
+        <a href="#top" class="inline-block transition-transform hover:scale-105 mb-2">
+          <img 
+            src="./PNG/CDREAM.png" 
+            alt="CDREAMS Logo" 
+            class="h-32 sm:h-44 w-auto object-contain filter drop-shadow-xl"
+          />
+        </a>
+
+        <p id="tagline" class="text-xs font-bold uppercase theme-text text-lime-400 tracking-widest">The Mini Studio</p>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Try the details <br/><em class="text-neutral-300 font-normal">before you commit.</em></h1>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center justify-center max-w-4xl mx-auto w-full">
+        
+        <!-- Interactive CD Card -->
+        <div class="glass-card p-6 rounded-3xl relative overflow-hidden flex flex-col items-center text-center">
+          <div class="w-full flex items-center justify-between mb-4 text-left">
+            <div>
+              <small id="preset-tag" class="text-xs font-bold theme-text text-lime-400 uppercase">01 / JOJI</small>
+              <h3 id="preset-artist" class="text-2xl font-black">Joji</h3>
+              <p id="preset-song" class="text-sm text-neutral-300">SLOW DANCING IN THE DARK</p>
+            </div>
+            <div class="flex gap-2">
+              <button id="prev-btn" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center font-bold border border-white/10 transition-all">←</button>
+              <button id="next-btn" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center font-bold border border-white/10 transition-all">→</button>
+            </div>
+          </div>
+
+          <div class="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center my-4">
+            <img id="product-img" src="./PNG/Joji.jpeg" alt="Mini CD Keychain" class="w-full h-full object-contain filter drop-shadow-2xl transition-all" />
+          </div>
+
+          <!-- Audio Status & Stop/Play Controls -->
+          <div class="flex items-center gap-3 mt-2">
+            <div id="audio-badge" class="bg-white/10 theme-text text-lime-300 font-bold px-4 py-2 rounded-full text-xs flex items-center gap-2 border theme-border border-lime-400/30">
+              <span id="pulse-dot" class="w-2 h-2 rounded-full theme-bg bg-lime-400 animate-pulse"></span>
+              <span id="audio-status">Click Play to Hear Audio</span>
+            </div>
+
+            <button id="stop-btn" class="bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-2 rounded-full text-xs transition-all border border-white/20">
+              Play
+            </button>
+          </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="space-y-6 w-full">
+          <div class="glass-card p-6 rounded-3xl space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-lg">◉ Tap-link preview</h3>
+              <span id="nfc-tag" class="text-[10px] bg-white/10 theme-text text-lime-300 px-2.5 py-1 rounded-full font-bold border theme-border border-lime-400/20">NFC DEMO</span>
+            </div>
+            <p class="text-xs text-neutral-300">Simulate tapping your phone on the keychain to auto-play audio and trigger the destination link.</p>
+            
+            <div class="flex gap-2">
+              <input id="nfc-url" type="url" readonly class="bg-black/40 border border-white/20 rounded-xl px-4 py-2 text-xs w-full text-neutral-200 focus:outline-none" />
+              <button id="copy-btn" class="bg-white/10 hover:bg-white/20 px-3 py-2 rounded-xl text-xs border border-white/10 transition-all">Copy</button>
+            </div>
+
+            <button id="tap-btn" class="w-full theme-bg bg-lime-400 text-black font-extrabold py-3 rounded-2xl text-sm transition-all flex items-center justify-center gap-2 hover:opacity-90 shadow-md">
+              <span>Simulate Phone Tap & Auto-Play</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 2: About Us & Product Information -->
+    <section id="about-product" class="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- About Us -->
+      <div class="glass-card p-8 rounded-3xl space-y-4">
+        <span class="theme-text text-lime-400 font-mono text-xs uppercase tracking-widest font-bold">Who We Are</span>
+        <h2 class="text-2xl font-extrabold">About CDreams Studio</h2>
+        <p class="text-xs text-neutral-300 leading-relaxed">
+          Founded by a passionate team of developers, audio engineers, and creative directors, CDreams Studio was built to re-imagine music memorabilia for the modern era. We combine tactile collectible aesthetics with high-speed NFC microchips.
+        </p>
+      </div>
+
+      <!-- Product Information -->
+      <div class="glass-card p-8 rounded-3xl space-y-4">
+        <span class="theme-text text-lime-400 font-mono text-xs uppercase tracking-widest font-bold">Specs & Features</span>
+        <h2 class="text-2xl font-extrabold">Product Specifications</h2>
+        <ul class="text-xs text-neutral-300 space-y-2 list-disc list-inside">
+          <li><strong>Dimensions:</strong> 45mm diameter Mini-CD acrylic disc.</li>
+          <li><strong>NFC Technology:</strong> High-frequency NTAG213 microchip (Passive, battery-free).</li>
+          <li><strong>Finish Options:</strong> Ultra-Clear Glossy or Anti-Glare Satin Matte.</li>
+          <li><strong>Compatibility:</strong> Instant tap reading for iOS & Android devices.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- Section 3: Chosen SDG, Advocacy Message & Hashtags -->
+    <section id="sdg-advocacy" class="w-full">
+      <div class="glass-card p-8 rounded-3xl max-w-4xl mx-auto space-y-6">
+        
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <div class="flex-shrink-0 text-center md:text-left">
+            <span class="text-4xl font-extrabold theme-text text-lime-400 block">SDG 12</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-neutral-300">Responsible Consumption & Production</span>
+          </div>
+
+          <div class="border-t md:border-t-0 md:border-l border-white/20 pt-4 md:pt-0 md:pl-6 space-y-2">
+            <h3 class="text-lg font-bold">SDG Advocacy Commitment</h3>
+            <p class="text-xs text-neutral-300 leading-relaxed">
+              At CDreams, we actively combat electronics e-waste and paper waste by producing durable, rewritable NFC keychains using eco-conscious polymer acrylics. Instead of disposable tickets, business cards, or temporary flyers, our products offer infinitely programmable digital touchpoints.
+            </p>
+          </div>
+        </div>
+
+        <div class="border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="text-xs text-neutral-300 italic">
+            <strong>Advocacy Message:</strong> "Keep the feeling, reduce the footprint — one tap at a time."
+          </div>
+          <div class="flex gap-2 text-xs font-bold theme-text text-lime-400">
+            <span>#TapIntoSustainability</span>
+            <span>#CDreamsEcoNFC</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 4: Customer Reviews & Interactive Feedback Section -->
+    <section id="reviews" class="w-full max-w-4xl mx-auto space-y-8">
+      <div class="text-center space-y-2">
+        <span class="theme-text text-lime-400 font-mono text-xs uppercase tracking-widest font-bold">Community Feedback</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold">Customer Reviews & Ratings</h2>
+        <p class="text-xs text-neutral-300">See what music enthusiasts and creators say about CDreams NFC Keychains.</p>
+      </div>
+
+      <!-- Reviews Container -->
+      <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+
+      <!-- Review Form -->
+      <div class="glass-card p-6 rounded-3xl max-w-2xl mx-auto space-y-4">
+        <h3 class="font-bold text-base text-center">Leave Your Review</h3>
+        <form id="review-form" class="space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="reviewer-name" required placeholder="Your Name" class="bg-black/40 border border-white/20 rounded-xl px-4 py-2 text-xs text-white focus:outline-none" />
+            <select id="reviewer-rating" class="bg-black/40 border border-white/20 rounded-xl px-4 py-2 text-xs text-white focus:outline-none">
+              <option value="★★★★★">★★★★★ (5 Stars)</option>
+              <option value="★★★★☆">★★★★☆ (4 Stars)</option>
+              <option value="★★★☆☆">★★★☆☆ (3 Stars)</option>
+              <option value="★★☆☆☆">★★☆☆☆ (2 Stars)</option>
+              <option value="★☆☆☆☆">★☆☆☆☆ (1 Star)</option>
+            </select>
+          </div>
+          <textarea id="reviewer-comment" rows="3" required placeholder="Write your feedback or review here..." class="bg-black/40 border border-white/20 rounded-xl px-4 py-2 text-xs text-white focus:outline-none w-full"></textarea>
+          <button type="submit" class="w-full theme-bg bg-lime-400 text-black font-extrabold py-2.5 rounded-xl text-xs uppercase tracking-wider hover:opacity-90 transition-all">
+            Post Review ↗
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Section 5: Team Section -->
+    <section id="team" class="w-full pt-8">
+      <div class="text-center mb-8">
+        <span class="theme-text text-lime-400 font-mono text-xs uppercase tracking-widest font-bold">The Creators</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1">Meet the Team</h2>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        <!-- Rellosa Mark Lorenz C. -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="glass-card team-card p-4 rounded-3xl text-center">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 mx-auto mb-3 shadow-lg">
+              <img src="./PNG/mark.jpg" alt="Rellosa Mark Lorenz C." class="w-full h-full object-cover" />
+            </div>
+            <h4 class="font-bold text-base">Rellosa Mark Lorenz C.</h4>
+            <p class="text-xs text-neutral-400">Chief Managing Officer/Web Developer</p>
+          </div>
+        </div>
+
+        <!-- Ong, Jenny Catherine B. -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="glass-card team-card p-4 rounded-3xl text-center">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 mx-auto mb-3 shadow-lg">
+              <img src="./PNG/jenny.jpg" alt="Ong, Jenny Catherine B." class="w-full h-full object-cover" />
+            </div>
+            <h4 class="font-bold text-base">Ong, Jenny Catherine B.</h4>
+            <p class="text-xs text-neutral-400">Operations and Production Manager</p>
+          </div>
+        </div>
+
+        <!-- Bongcac, Venz Jay T. -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="glass-card team-card p-4 rounded-3xl text-center">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 mx-auto mb-3 shadow-lg">
+              <img src="./PNG/bongcac.jpg" alt="Bongcac, Venz Jay T." class="w-full h-full object-cover" />
+            </div>
+            <h4 class="font-bold text-base">Bongcac, Venz Jay T.</h4>
+            <p class="text-xs text-neutral-400">Client Relations Officer</p>
+          </div>
+        </div>
+
+        <!-- Oruqia, Rear Admiral Angeles S. -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="glass-card team-card p-4 rounded-3xl text-center">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 mx-auto mb-3 shadow-lg">
+              <img src="./PNG/admiral.jpg" alt="Oruqia, Rear Admiral Angeles S." class="w-full h-full object-cover" />
+            </div>
+            <h4 class="font-bold text-base">Oruqia, Rear Admiral Angeles S.</h4>
+            <p class="text-xs text-neutral-400">Sales and Marketing Officer</p>
+          </div>
+        </div>
+
+        <!-- Lacson, Royce Zebedee C. -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="glass-card team-card p-4 rounded-3xl text-center">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 mx-auto mb-3 shadow-lg">
+              <img src="./PNG/royce.jpg" alt="Lacson, Royce Zebedee C." class="w-full h-full object-cover" />
+            </div>
+            <h4 class="font-bold text-base">Lacson, Royce Zebedee C.</h4>
+            <p class="text-xs text-neutral-400">Financial Officer</p>
+          </div>
+        </div>
+
+        <!-- Sudario Samantha -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="glass-card team-card p-4 rounded-3xl text-center">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 mx-auto mb-3 shadow-lg">
+              <img src="./PNG/samantha.jpg" alt="Sudario Samantha" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="font-bold text-base">Sudario Samantha</h4>
+            <p class="text-xs text-neutral-400">Research and Development Officer</p>
+          </div>
+        </div>
+
+        <!-- Guballa, Johann Kody V. -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="glass-card team-card p-4 rounded-3xl text-center">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 mx-auto mb-3 shadow-lg">
+              <img src="./PNG/kody.jpg" alt="Guballa, Johann Kody V." class="w-full h-full object-cover" />
+            </div>
+            <h4 class="font-bold text-base">Guballa, Johann Kody V.</h4>
+            <p class="text-xs text-neutral-400">Liaisons Officer</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-6 border-t border-white/10 text-center text-xs text-neutral-400 w-full max-w-7xl z-10">
+    © 2026 CDreams Studio • Group 4 / ICT 12-I • All Rights Reserved • <a href="privacy-policy.html" class="text-lime-400 hover:underline">Privacy Policy</a>
+  </footer>
+
+</body>
+</html>
